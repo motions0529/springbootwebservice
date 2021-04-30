@@ -1,0 +1,35 @@
+// 빌드 의존성을 위해 설정
+buildscript {
+    ext {
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 추가 되는 플러그인 기본
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+// 그룹 셋팅용
+group 'com.testproject'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+// 레포지토리용이라는데 잘 모르겠음
+repositories {
+    mavenCentral()
+}
+
+// 기본 스프링 부트이기 때문에 컴파일 되는 의존성을 주입한다 (일반 빌드 및 테스트용 빌드) 앞으로 요기에 계속 추가될 예정
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
+}
